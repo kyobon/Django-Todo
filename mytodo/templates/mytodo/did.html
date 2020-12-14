@@ -1,0 +1,83 @@
+{% load static %}
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="{% static 'mytodo/css/did.css' %}">
+</head>
+<body>
+    <div class="header">
+        <div class="header-logo">{{title}}</div>
+    </div>
+    <div class="main">
+        <div class="main-message"><h2>{{msg}}</h2></div>
+        <div class="main-todo">
+            <table class="table">
+                {% for item in data %}
+                <tr>
+                    <td><p>{{item.did}}</p></td>
+                    <td class='achieved'><p><a href="{% url 'diddelete' item.id %}">Delete</a></p></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div> 
+    <ul class="pagination">
+        {% if data.has_previous %}
+        <li class="page-item">
+            <a class='page-link' href="{% url 'did' %}">
+                &laquo; first
+            </a>
+        </li>
+        <li class="page-item">
+            <a class='page-link'
+            href="{% url 'did' %}{{data.previoius_page_number}}">
+                &laquo; prev</a>
+        </li>
+        {% else %}
+        <li class='page-item'>
+            <a class='page-link'>
+                &laquo; first
+            </a>
+        </li>
+        <li class='page-item'>
+            <a class='page-link'>
+                &laquo; prev
+            </a>
+        </li>
+        {% endif %}
+        <li class='page-item'>
+            <a class='page-link'>
+                {{data.number}}/{{data.paginator.num_pages}}
+            </a>
+        </li>
+        {% if data.has_next %}
+        <li class='page-item'>
+            <a class='page-link'
+            href="{% url 'did' %}{{data.next_page_number}}">
+                next &raquo;</a>
+        </li>
+        <li class='page-item'>
+            <a class='page-link'
+            href="{% url 'did' %}{{data.paginator.num_pages}}">
+                last &raquo;</a>
+        </li>
+        {% else %}
+        <li class="page-item">
+            <a class='page-link'>
+                next &raquo;
+            </a>
+        </li>
+        <li class='page-item'>
+            <a class='page-link'>
+                last &raquo;
+            </a>
+        </li>
+        {% endif %}
+    </ul>    
+    <div class='footer'>
+        <td class='footer-do'><h3><a href="{% url 'index' %}">→ Todo</a></h3></td>
+    </div> 
+</body>
+</html>
