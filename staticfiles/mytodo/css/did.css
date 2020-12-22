@@ -1,0 +1,20 @@
+.header{
+    background-color: green;
+    font-family:Avenir Next;
+    height:60px;
+}
+.header-logo{
+    font-size:30px;
+    padding:10px 20px 20px 20px;
+    color:white;
+}
+.footer{
+    font-family:Avenir Next;
+    height:40px;
+}
+.pagination li{
+    display:inline;
+    padding:10px 15px;
+    border:1px #ccc solid;color:#000053;
+    border-radius:5px/5px;
+}
